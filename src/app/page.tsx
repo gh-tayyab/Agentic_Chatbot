@@ -2,24 +2,26 @@
 import { useState } from "react";
 import axios from "axios";
 
+type Message = {
+  text: string;
+  sender: "user" | "bot";
+};
+
 export default function Home() {
   const [message, setMessage] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Message[]>([]); // Define the type here
 
-  // Backend URL - replace with your actual ngrok URL
-  const backendUrl = "https://cee7-35-229-167-136.ngrok-free.app/chat";
+  const backendUrl = "https://938f-34-82-120-136.ngrok-free.app/chat";
 
-  // Function to handle the message submission
   const handleSubmit = async () => {
-    if (!message.trim()) return; // Do nothing if the message is empty
+    if (!message.trim()) return;
 
     setLoading(true);
     setMessages([...messages, { text: message, sender: "user" }]);
 
     try {
-      // Send the message to the backend
       const res = await axios.post(
         backendUrl,
         { message },
@@ -49,8 +51,7 @@ export default function Home() {
     }
   };
 
-  // Handle "Enter" key press
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter") {
       handleSubmit();
     }
@@ -94,7 +95,7 @@ export default function Home() {
               placeholder="Type your message here..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              onKeyDown={handleKeyDown} // Trigger on "Enter" key press
+              onKeyDown={handleKeyDown}
             />
             <button
               onClick={handleSubmit}
