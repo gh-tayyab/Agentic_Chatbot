@@ -106,14 +106,6 @@ export default function Home() {
             </button>
           </div>
         </div>
-
-        {/* Display the latest response */}
-        {response && (
-          <div className="w-full bg-white border-t p-4 text-gray-800">
-            <h3 className="text-lg font-semibold">Latest Response:</h3>
-            <p>{response}</p>
-          </div>
-        )}
       </main>
 
       <footer className="w-full bg-gray-50 py-4 mt-4 text-center text-black">
