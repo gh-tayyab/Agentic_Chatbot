@@ -58,7 +58,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-between min-h-screen bg-gray-50">
+    <div className="flex flex-col items-center justify-between h-screen bg-gray-50">
       <header className="w-full sticky top-0 bg-gray-50 py-4 shadow">
         <div className="container mx-auto text-center">
           <h1 className="text-black text-2xl font-bold">AI Chatbot</h1>
@@ -66,45 +66,44 @@ export default function Home() {
       </header>
 
       <main className="flex-1 container mx-auto flex flex-col items-center">
-        <div className="w-full mt-2 space-x-2 gap-x-4 bg-gray-50 flex-1">
-          <div className="flex flex-col space-y-4 px-4">
-            <div className="h-80 overflow-y-auto bg-gray-50 border border-gray-50">
-              {messages.map((msg, index) => (
-                <div
-                  key={index}
-                  className={`mb-3 ${
-                    msg.sender === "user" ? "text-right" : "text-left"
-                  }`}
-                >
-                  <div
-                    className={`inline-block px-4 py-2 rounded-lg shadow-sm ${
-                      msg.sender === "user"
-                        ? "bg-gray-50 text-gray-800"
-                        : "bg-gray-50 text-gray-800"
-                    }`}
-                  >
-                    {msg.text}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <textarea
-              className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-100 resize-none"
-              rows={2}
-              placeholder="Type your message here..."
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              onKeyDown={handleKeyDown}
-            />
-            <button
-              onClick={handleSubmit}
-              className="w-full bg-gray-800 text-white py-2 rounded hover:bg-gray-900 transition disabled:opacity-50"
-              disabled={loading}
+        <div className="w-full mt-2 space-x-2 gap-x-4 bg-gray-50 flex-1 overflow-y-auto">
+          {messages.map((msg, index) => (
+            <div
+              key={index}
+              className={`mb-3 ${
+                msg.sender === "user" ? "text-right" : "text-left"
+              }`}
             >
-              {loading ? "Sending..." : "Send"}
-            </button>
-          </div>
+              <div
+                className={`inline-block px-4 py-2 rounded-lg shadow-sm ${
+                  msg.sender === "user"
+                    ? "bg-gray-100 text-gray-800"
+                    : "bg-gray-200 text-gray-800"
+                }`}
+              >
+                {msg.text}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Fixed Bottom Section */}
+        <div className="w-full bg-white px-4 py-3 border-t border-gray-300 sticky bottom-0">
+          <textarea
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-100 resize-none"
+            rows={2}
+            placeholder="Type your message here..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <button
+            onClick={handleSubmit}
+            className="w-full bg-gray-800 text-white py-2 rounded mt-2 hover:bg-gray-900 transition disabled:opacity-50"
+            disabled={loading}
+          >
+            {loading ? "Sending..." : "Send"}
+          </button>
         </div>
       </main>
     </div>
