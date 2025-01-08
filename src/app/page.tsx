@@ -9,7 +9,6 @@ type Message = {
 
 export default function Home() {
   const [message, setMessage] = useState("");
-  const [response, setResponse] = useState(""); // State for response
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
 
@@ -37,7 +36,6 @@ export default function Home() {
         { text: message, sender: "user" },
         { text: res.data.response, sender: "bot" },
       ]);
-      setResponse(res.data.response); // Set the response
     } catch (error) {
       console.error("Error sending message:", error);
       setMessages([
@@ -53,6 +51,7 @@ export default function Home() {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter") {
+      e.preventDefault(); // Prevents adding a new line
       handleSubmit();
     }
   };
