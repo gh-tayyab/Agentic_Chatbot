@@ -107,10 +107,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-
-      <footer className="w-full bg-gray-50 py-4 mt-4 text-center text-black">
-        <p>Agentia World</p>
-      </footer>
     </div>
   );
 }
