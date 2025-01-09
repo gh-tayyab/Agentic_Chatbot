@@ -65,7 +65,7 @@ export default function Home() {
       </header>
 
       <main className="flex-1 container mx-auto flex flex-col items-center">
-        <div className="w-full mt-2 space-x-2 gap-x-4 bg-gray-50 flex-1 overflow-y-auto">
+        <div className="w-full px-2 mt-2 space-x-2 gap-x-4 bg-gray-50 flex-1 overflow-y-auto">
           {messages.map((msg, index) => (
             <div
               key={index}
